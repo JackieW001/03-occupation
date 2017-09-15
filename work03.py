@@ -3,20 +3,20 @@ import random
 dictionary = {}
 lit = []
 
-with open("occupations.csv", "r") as csvfile:
-    reader = csv.reader(csvfile)
-    for row in reader:
-        dictionary[row[0]] = row[1]
-    
-del dictionary["Job Class"]
-del dictionary["Total"]
-for i in dictionary:
-    num = 0
-    while num < (float(dictionary[i])*10):
-        lit.append(i)
-        num += 1
+def future_occupation():
+	with open("occupations.csv", "r") as csvfile:
+		reader = csv.reader(csvfile)
+		for row in reader:
+			dictionary[row[0]] = row[1]
+	
+	del dictionary["Job Class"]
+	del dictionary["Total"]
+	for i in dictionary:
+		num = 0
+		while num < (float(dictionary[i])*10):
+			lit.append(i)
+			num += 1
+		
+	return random.choice(lit)
 
-print lit
-print type(float(dictionary["Management"]))
-random.choice(lit)
-#print dictionary
+print future_occupation()
