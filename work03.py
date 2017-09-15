@@ -1,25 +1,22 @@
 import csv
-
-f = open("occupations.csv", "r")
-csvfile = f.read()
-csvfile = csvfile.split("\r\n")
-csvfile = csvfile[1:-2]
-
-f.close()
-
+import random
 dictionary = {}
+lit = []
 
-for line in csvfile:
-    innerdict = line.split(",")
-    #print innerdict
-    dictionary[innerdict[0]] = innerdict[1]
+with open("occupations.csv", "r") as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        dictionary[row[0]] = row[1]
+    
+del dictionary["Job Class"]
+del dictionary["Total"]
+for i in dictionary:
+    num = 0
+    while num < (float(dictionary[i])*10):
+        lit.append(i)
+        num += 1
 
-#print csvfile[0]
-print dictionary
-
-
-"""
-with open("occupations.csv","r") as csvfile:
-    for row in csvfile:
-        print row
-"""
+print lit
+print type(float(dictionary["Management"]))
+random.choice(lit)
+#print dictionary
